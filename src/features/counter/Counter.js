@@ -9,6 +9,19 @@ const Counter = () => {
     const [incrementAmount,setIncrementAmount] = useState(0);
     const addValue = Number(incrementAmount) || 0;
 
+    const amount = () =>{
+      dispatch(incrementByAmount(addValue))
+    }
+
+    const setAmount = (e) =>{
+      setIncrementAmount(e.target.value)
+    }
+    const increaseAmount = () =>{
+      dispatch(increment())
+    }
+    const decreaseAmount = () =>{
+      dispatch(decrement())
+    }
     const resetAll = () => {
       setIncrementAmount(0);
       dispatch(reset());
@@ -17,12 +30,15 @@ const Counter = () => {
     <section>
         <h1>Counter</h1>
         <p>Count: {count}</p>
-        <input type= "text" value={incrementAmount} onChange={e => setIncrementAmount(e.target.value)}/>
-        <button onClick={() => dispatch(increment())}>+</button>
-        <button onClick={() => dispatch(decrement())}>-</button>
+        <input type= "text" 
+        value={incrementAmount} 
+        onChange={setAmount}
+        />
+        <button onClick={increaseAmount}>+</button>
+        <button onClick={decreaseAmount}>-</button>
         
         <div>
-          <button onClick = {()=>dispatch(incrementByAmount(addValue))}>Add Amount</button>
+          <button onClick = {amount}>Add Amount</button>
           <button onClick={resetAll}>RESET</button>
         </div>
     </section>
